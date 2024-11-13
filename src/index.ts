@@ -1,11 +1,17 @@
-import { Context, Schema } from 'koishi'
+import {WeChatFerryBot} from './bot'
+import * as WeChatFerry from './utils'
 
-export const name = 'adapter-wechat-ferry'
+export {WeChatFerry}
+export * from "./bot";
+export * from "./message";
+export * from "./http";
+export * from "./utils";
 
-export interface Config {}
+export declare const name = 'adapter-wechat-ferry'
+export default WeChatFerryBot;
 
-export const Config: Schema<Config> = Schema.object({})
-
-export function apply(ctx: Context) {
-  // write your plugin here
+declare module "@satorijs/core" {
+  interface Session {
+    wechatFerry?: WeChatFerry.RequestBody & WeChatFerry.Internal;
+  }
 }
