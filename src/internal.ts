@@ -1,6 +1,5 @@
 import { Quester } from 'koishi'
 import form_data from 'form-data'
-import { Ui } from './types'
 
 export class Internal {
   constructor(private http: Quester) {
