@@ -1,0 +1,22 @@
+{
+  "name": "@sqiao7/koishi-plugin-adapter-wechat-ferry",
+  "description": "WeChatFerry adapter",
+  "version": "0.0.1",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {},
+  "keywords": [
+    "chatbot",
+    "koishi",
+    "plugin"
+  ],
+  "devDependencies": {},
+  "peerDependencies": {
+    "koishi": "4.18.1"
+  }
+}
