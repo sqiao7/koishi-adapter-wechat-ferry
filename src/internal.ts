@@ -5,7 +5,7 @@ export class Internal {
   constructor(private http: Quester) {
   }
 
-  async acceptNewFriend(scene: string, v3: string, v4: string) {
+  async acceptNewFriend(scene: number, v3: string, v4: string) {
     return await this.request("POST", "/accept-new-friend",  {scene, v3, v4})
   }
 
@@ -77,8 +77,7 @@ export class Internal {
     if (method === "GET") {
       return (await this.http(path, { params: data, headers })).data;
     } else {
-      data = data instanceof form_data ? data : JSON.stringify(data);
-      return (await this.http(method, path, { data, headers })).data;
+      return (await this.http(method, path, { data:  JSON.stringify(data), headers })).data;
     }
   }
 }

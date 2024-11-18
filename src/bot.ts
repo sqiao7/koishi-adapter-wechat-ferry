@@ -12,7 +12,7 @@ export class WeChatFerryBot<C extends Context = Context, T extends WeChatFerryBo
   internal: Internal
 
   constructor(ctx: C, config:T) {
-    super(ctx, config, 'wechatFerry')
+    super(ctx, config, 'wechat')
     this.logger = ctx.logger('wechatFerry')
     this.http = ctx.http.extend({headers: {"Content-Type": "application/json"}}).extend(config)
     this.internal = new Internal(this.http)
@@ -31,6 +31,17 @@ export class WeChatFerryBot<C extends Context = Context, T extends WeChatFerryBo
     this.logger.info("user", this.user);
     this.selfId = userinfo.data.wxid
     return this.toJSON();
+  }
+
+  async handleFriendRequest(messageId: string, accept: boolean, comment?: string) {
+    const [scene, v3,v4,_] = messageId.split(':')
+    if (!accept) {
+      this.logger.info("拒绝好友请求", messageId)
+      return
+    }
+
+    const res = await this.internal.acceptNewFriend(Number(scene), v3, v4)
+    console.log(res)
   }
 }
 
